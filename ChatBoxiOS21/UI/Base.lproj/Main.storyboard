@@ -11,10 +11,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Chat View Controller-->
         <scene sceneID="ynh-0Y-Vh0">
             <objects>
-                <viewController id="aB1-tf-CAA" sceneMemberID="viewController">
+                <viewController id="aB1-tf-CAA" customClass="ChatViewController" customModule="ChatBoxiOS21" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nCx-a2-5V7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -31,13 +31,16 @@
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Chat" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="coI-d2-ldS">
                                         <rect key="frame" x="0.0" y="57.5" width="300" height="47"/>
                                         <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mKu-uh-Biy">
                                         <rect key="frame" x="0.0" y="114.5" width="300" height="47.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <state key="normal" title="Send Cha"/>
+                                        <state key="normal" title="Send Chat"/>
+                                        <connections>
+                                            <action selector="sendChatButtonTapped:" destination="aB1-tf-CAA" eventType="touchUpInside" id="4Nr-we-1ql"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -46,7 +49,7 @@
                                     <constraint firstItem="EdK-EC-3zD" firstAttribute="width" secondItem="iAL-v2-pO1" secondAttribute="width" id="hD1-Z4-XeG"/>
                                 </constraints>
                             </stackView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="supermarioghost_1_copy" translatesAutoresizingMaskIntoConstraints="NO" id="5aU-OQ-nc4">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5aU-OQ-nc4">
                                 <rect key="frame" x="89" y="58" width="173" height="111"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="111" id="BI0-t9-hjh"/>
@@ -66,26 +69,41 @@
                         <viewLayoutGuide key="safeArea" id="SeP-CR-TVr"/>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="favorites" id="LQd-Pg-As6"/>
+                    <connections>
+                        <outlet property="chatBoxLabel" destination="EdK-EC-3zD" id="roo-av-yAE"/>
+                        <outlet property="chatTextField" destination="coI-d2-ldS" id="Wrj-Zh-FhA"/>
+                        <outlet property="sendButton" destination="mKu-uh-Biy" id="eU8-M2-0fb"/>
+                        <outlet property="storyBoardImage" destination="5aU-OQ-nc4" id="FSP-ZA-me6"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FdT-hk-bII" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1551.2" y="646.32683658170924"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Chat List Table View Controller-->
         <scene sceneID="b6q-dK-hlk">
             <objects>
-                <tableViewController id="G9M-jk-R49" sceneMemberID="viewController">
+                <tableViewController id="G9M-jk-R49" customClass="ChatListTableViewController" customModule="ChatBoxiOS21" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Tgm-w1-1OS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="SYx-Yz-SPI">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="chatCell" textLabel="KUb-wb-dRj" style="IBUITableViewCellStyleDefault" id="SYx-Yz-SPI">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="SYx-Yz-SPI" id="Tgi-Mh-Bq5">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KUb-wb-dRj">
+                                            <rect key="frame" x="16" y="0.0" width="343" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -98,7 +116,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sZj-ON-alh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-609" y="627"/>
+            <point key="canvasLocation" x="-604" y="627"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="gdJ-mD-mdg">
@@ -106,6 +124,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="QJN-fA-XkG" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="mlh-SY-mV8">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
@@ -119,7 +138,4 @@
             <point key="canvasLocation" x="-1134" y="-153"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="supermarioghost_1_copy" width="256" height="256"/>
-    </resources>
 </document>
